@@ -65,14 +65,13 @@ class UserView(viewsets.ModelViewSet):
                       'key': settings.GOOGLE_API_KEY
                       }
             result = requests.get(url, params=params).json()
-            if (len(result['results']) == 1):
+            if (len(result['results']) > 0):
                 location['coordinates'] = {'x': None, 'y': None}
                 location['coordinates']['x'] = result['results'][0]['geometry']['location']['lat']
                 location['coordinates']['y'] = result['results'][0]['geometry']['location']['lng']
                 request.data["location"] = location
             else:
                 return HttpResponseBadRequest('The location could not be determined based on the given address')
-        print(request.data)
         return super().update(request, *args, **kwargs)
 
 
@@ -129,7 +128,6 @@ class ServiceView(viewsets.ModelViewSet):
             instance = self.model_class.objects.get(pk=help_id)
             instance.guests.add(user)
             instance.save()
-            print(self.getSerializedData(instance))
             async_to_sync(get_channel_layer().group_send)(
                 'service_{}'.format(instance.id),
                 {
