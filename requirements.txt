@@ -22,7 +22,7 @@ django-model-utils==3.1.2
 django-rest-framework==0.1.0
 djangorestframework==3.9.0
 drf-writable-nested==0.5.1
-ecdsa==0.13
+ecdsa==0.13.3
 Flask==0.10.1
 Flask-BabelEx==0.9.3
 Flask-Gravatar==0.4.2
