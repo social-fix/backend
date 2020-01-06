@@ -71,7 +71,7 @@ txaio==18.8.1
 typecatcher==0.2
 ufw==0.35
 unattended-upgrades==0.1
-urllib3==1.24.1
+urllib3==1.24.2
 Werkzeug==0.10.4
 whitenoise==4.1.2
 WTForms==2.1
