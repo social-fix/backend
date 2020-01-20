@@ -22,6 +22,8 @@ from .permissions import (IsAuthenticatedOrCreate, IsOwnerOrReadOnly,
 from .serializers import *
 from .tokens import account_activation_token
 
+import os
+
 
 class CsrfExemptSessionAuthentication(SessionAuthentication):
 
@@ -95,7 +97,6 @@ class ServiceView(viewsets.ModelViewSet):
             serializer = WashingSerializer
         else:
             serializer = ServiceSerializer
-
         return dict(serializer(model).data, type=className.lower())
 
     def list(self, request, *args, **kwargs):
@@ -103,6 +104,18 @@ class ServiceView(viewsets.ModelViewSet):
         serializedData = [self.getSerializedData(
             service) for service in queryset]
         return Response(serializedData)
+
+    @action(methods=['get'], detail=False,
+            url_path='groupedList')
+    def groupedList(self, request):
+        queryset = self.get_queryset()
+        serializedData = [self.getSerializedData(
+            service) for service in queryset]
+        group_by_sender = {}
+        for sender in queryset.values_list('sender', flat=True).distinct():
+            group_by_sender[sender] = [service for service in serializedData if service['sender']['id']==sender]
+            print(group_by_sender)
+        return Response(group_by_sender)
         
     @action(methods=['get'], detail=False,
             url_path='getBySender/(?P<sender_id>[0-9]+)')
