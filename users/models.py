@@ -58,7 +58,7 @@ def create_auth_token(sender, instance=None, created=False, **kwargs):
         Token.objects.create(user=instance)
     
 class Service(models.Model):
-    sender = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='%(class)s_sender')
+    sender = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='%(class)s_service')
     guests = models.ManyToManyField(Profile, default=None, blank=True)
     start = models.DateTimeField()
     end = models.DateTimeField()
