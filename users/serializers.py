@@ -2,6 +2,7 @@ from rest_framework import serializers
 from django.contrib.auth import authenticate
 from django.utils.translation import ugettext_lazy as _
 from . models import *
+from . fields import AsymetricRelatedField
 from drf_writable_nested import WritableNestedModelSerializer
 
 class GeoPointSerializer(serializers.ModelSerializer):
@@ -54,6 +55,7 @@ class ServiceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Service
         fields = '__all__'
+    sender = AsymetricRelatedField.from_serializer(ProfileSerializer)
 
 class MealSerializer(ServiceSerializer):
     class Meta:
