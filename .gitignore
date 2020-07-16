@@ -47,3 +47,4 @@ Thumbs.db
 backend/conf.py
 notes.txt
 .vscode/
+*/myvenv/
