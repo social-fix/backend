@@ -44,7 +44,7 @@ itsdangerous==0.24
 Jinja2==2.8
 Mako==1.0.3
 MarkupSafe==0.23
-paramiko==1.16.0
+paramiko==2.10.1
 passlib==1.6.5
 psutil==3.4.2
 psycopg2==2.7.5
