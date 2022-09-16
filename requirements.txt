@@ -42,7 +42,7 @@ idna==2.8
 incremental==17.5.0
 itsdangerous==0.24
 Jinja2==2.8
-Mako==1.0.3
+Mako==1.2.2
 MarkupSafe==0.23
 paramiko==1.16.0
 passlib==1.6.5
